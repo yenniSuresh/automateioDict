@@ -1,4 +1,5 @@
 import BaseService from "./BaseService";
+import FourtyTwoWordsResource from "../resources/FourtyTwoWordsResource";
 
 class FourtyTwoWordService extends BaseService {
 
@@ -18,3 +19,5 @@ class FourtyTwoWordService extends BaseService {
         return this.resource.relatedWords();
     }
 }
+
+export default FourtyTwoWordService(FourtyTwoWordsResource);
