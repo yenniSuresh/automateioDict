@@ -1,0 +1,9 @@
+{
+  "name": "automateioDict",
+  "version": "1.0.0",
+  "description": "Command Line Dictionary Tool",
+  "main": "index.js",
+  "repository": "https://github.com/yenniSuresh/automateioDict.git",
+  "author": "yenniSuresh <iamyennisuresh@gmail.com>",
+  "license": "NONE"
+}
