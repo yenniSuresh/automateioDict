@@ -6,7 +6,31 @@
   "repository": "https://github.com/yenniSuresh/automateioDict.git",
   "author": "yenniSuresh <iamyennisuresh@gmail.com>",
   "license": "NONE",
+  "scripts": {
+    "build": "node node_modules/.bin/webpack --config webpack.config.js",
+    "watch": "node node_modules/.bin/webpack --config webpack.config.js -w --progress --profile"
+  },
   "dependencies": {
     "axios": "^0.19.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-proposal-decorators": "^7.3.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/plugin-proposal-throw-expressions": "^7.8.3",
+    "babel-plugin-source-map-support": "^2.1.1",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-dynamic-import-node": "^2.2.0",
+    "babel-plugin-istanbul": "^5.1.0",
+    "babel-plugin-macros": "^2.8.0",
+    "babel-polyfill": "6.26.0",
+    "terser-webpack-plugin": "^2.3.4",
+    "uglifyjs-webpack-plugin": "2.1.1",
+    "webpack": "4.28.3",
+    "webpack-cli": "^3.3.11"
   }
 }
