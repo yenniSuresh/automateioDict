@@ -4,19 +4,19 @@ class CmdService {
      */
     printPoints(points) {
         if(!Array.isArray(points) || !points.length) {
-            console.log('No data available\n')
+            return console.log('    No data available\n')
         }
         points.forEach((point, index) => console.log(`  ${index + 1}) ${point}\n`));
     };
 
     /**
-     * @param line
+     * @param text
      */
-    printLine(line) {
-        if(!line) {
+    printTitle(text) {
+        if(!text) {
             console.log('No data available\n')
         }
-        console.log(`${line}\n`);
+        console.log(`${text}\n`);
     };
 
     /**
