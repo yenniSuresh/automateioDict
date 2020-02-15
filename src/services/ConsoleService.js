@@ -33,7 +33,7 @@ class ConsoleService {
 
     /**
      * @param question
-     * @returns {Promise<unknown>}
+     * @returns {Promise<string>}
      */
     askInput(question) {
         return new Promise((resolve) => {

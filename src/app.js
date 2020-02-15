@@ -1,4 +1,4 @@
-import CmdService from "./services/ConsoleService";
+import CmdService from './services/ConsoleService';
 import * as actions from './actions';
 
 /**

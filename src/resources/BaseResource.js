@@ -1,4 +1,4 @@
-import { createAxiosApi } from "../helpers/AxiosHelper";
+import { createAxiosApi } from '../helpers/AxiosHelper';
 
 export default class BaseResource {
     /**
@@ -12,7 +12,11 @@ export default class BaseResource {
         this.axiosApi.interceptors.response.use(this.successResponseInterceptor, this.errorResponseInterceptor);
     }
 
-
+    /**
+     * @param path
+     * @param params
+     * @returns {Promise<*>}
+     */
     async getData(path, params = {}) {
         const response = await this.axiosApi.get(path, this._buildQueryParams(params));
         return response.data;

@@ -1,5 +1,5 @@
-import BaseService from "./BaseService";
-import FourtyTwoWordsResource from "../resources/FourtyTwoWordsResource";
+import BaseService from './BaseService';
+import FourtyTwoWordsResource from '../resources/FourtyTwoWordsResource';
 
 class FourtyTwoWordService extends BaseService {
 
