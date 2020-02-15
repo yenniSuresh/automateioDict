@@ -1,5 +1,10 @@
+import CmdService from "./services/CmdService";
 import * as actions from './actions';
 
-const args = process.argv.slice(2);
+const dispatcher = ({ name, arg }) => {
+    actions[name](arg);
+};
 
-actions[args[0]](args[1]).then(response => console.log("Answer = ", response));
+const action = CmdService.getAction();
+
+dispatcher(action);
