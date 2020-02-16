@@ -1,5 +1,5 @@
 import FourtyTwoWordService from './services/FourtyTwoWordService';
-import ConsoleService from './services/ConsoleService';
+import { printTitle, printPoints, printLine, askInput } from './helpers/ConsoleHelper';
 import { randomInt, rangeRandomInt } from './helpers/GenericHelper';
 
 export default class Dictionary {
@@ -17,8 +17,8 @@ export default class Dictionary {
      */
     async showDefinition() {
         const definitions = await this._getDefinitions();
-        ConsoleService.printTitle('Possible definitions are:');
-        ConsoleService.printPoints(definitions);
+        printTitle('Possible definitions are:');
+        printPoints(definitions);
     }
 
     /**
@@ -26,8 +26,8 @@ export default class Dictionary {
      */
     async showSynonyms() {
         const synonyms = await this._getSynonyms();
-        ConsoleService.printTitle('Possible synonyms are:');
-        ConsoleService.printPoints(synonyms);
+        printTitle('Possible synonyms are:');
+        printPoints(synonyms);
     }
 
     /**
@@ -35,8 +35,8 @@ export default class Dictionary {
      */
     async showAntonyms() {
         const antonyms = await this._getAntonyms();
-        ConsoleService.printTitle('Possible antonyms are:');
-        ConsoleService.printPoints(antonyms);
+        printTitle('Possible antonyms are:');
+        printPoints(antonyms);
     }
 
     /**
@@ -44,15 +44,15 @@ export default class Dictionary {
      */
     async showExamples() {
         const examples = await this._getExamples();
-        ConsoleService.printTitle('Few examples are:');
-        ConsoleService.printPoints(examples);
+        printTitle('Few examples are:');
+        printPoints(examples);
     }
 
     /**
      * @returns {Promise<[void, void, void, void]>}
      */
     showOverview() {
-        ConsoleService.printTitle(`WORD: ${this.word}`);
+        printTitle(`WORD: ${this.word}`);
         return Promise.all([
             this.showDefinition(),
             this.showSynonyms(),
@@ -66,7 +66,7 @@ export default class Dictionary {
      */
     async showRandomOverview() {
         await this._setRandomWord();
-        this.showOverview();
+        return this.showOverview();
     }
 
     /**
@@ -74,7 +74,7 @@ export default class Dictionary {
      */
     async playGuessGame() {
         const game = await this._bootstrapGame();
-        this._startGame(game)
+        return this._startGame(game)
     }
 
     /**
@@ -159,19 +159,19 @@ export default class Dictionary {
      */
     async _startGame({ definitions, synonyms }) {
         let selectedGameOptions;
-        ConsoleService.printTitle('Guess Word Game');
-        ConsoleService.printLine(`Given definition: ${definitions[0]}`);
-        while (selectedGameOptions !== 3) {
-            const guessedWord = await ConsoleService.askInput('What is the word? ');
+        printTitle('Guess Word Game');
+        printLine(`Given definition: ${definitions[0]}`);
+        do {
+            const guessedWord = await askInput('What is the word? ');
             if (synonyms.includes(guessedWord) || this.word === guessedWord) {
-                return ConsoleService.printLine('Well played!! Congratulations.');
+                return printLine('Well played!! Congratulations.');
             }
             selectedGameOptions = await this._showGameOptions();
             if (selectedGameOptions === 2) {
                 this._showHint(definitions, synonyms);
             }
-        }
-        this.showOverview();
+        } while (selectedGameOptions !== 3)
+        return this.showOverview();
     };
 
     /**
@@ -179,9 +179,9 @@ export default class Dictionary {
      * @private
      */
     async _showGameOptions() {
-        ConsoleService.printLine('Give below options:');
-        ConsoleService.printPoints(['Try again', 'Hint', 'Quit']);
-        const selectedOption = await ConsoleService.askInput('Please enter one option number: ');
+        printLine('Give below options:');
+        printPoints(['Try again', 'Hint', 'Quit']);
+        const selectedOption = await askInput('Please enter one option number: ');
         return parseInt(selectedOption);
     };
 
@@ -204,7 +204,7 @@ export default class Dictionary {
      */
     _showDefinitionHint(definitions) {
         const randomDefinition = definitions[rangeRandomInt(1, definitions.length - 1)];
-        ConsoleService.printLine(`Possible another definition for word is: ${randomDefinition}`);
+        printLine(`Possible another definition for word is: ${randomDefinition}`);
     };
 
     /**
@@ -213,6 +213,6 @@ export default class Dictionary {
      */
     _showSynonymHint(synonyms) {
         const randomSynonym = synonyms[randomInt(synonyms.length)];
-        ConsoleService.printLine(`Possible synonym for word is: ${randomSynonym}`);
+        printLine(`Possible synonym for word is: ${randomSynonym}`);
     };
 }

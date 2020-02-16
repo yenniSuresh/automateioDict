@@ -5,7 +5,7 @@ import Dictionary from './Dictionary';
  */
 export const defn = (word) => {
     const dict = new Dictionary(word);
-    dict.showDefinition();
+    return dict.showDefinition();
 };
 
 /**
@@ -13,7 +13,7 @@ export const defn = (word) => {
  */
 export const syn = (word) => {
     const dict = new Dictionary(word);
-    dict.showSynonyms();
+    return dict.showSynonyms();
 };
 
 /**
@@ -21,32 +21,32 @@ export const syn = (word) => {
  */
 export const ant = (word) => {
     const dict = new Dictionary(word);
-    dict.showAntonyms();
+    return dict.showAntonyms();
 };
 
 /**
  * @param word
  */
-export const ex = (word) => {
+export const ex = async (word) => {
     const dict = new Dictionary(word);
-    dict.showExamples();
+    return dict.showExamples();
 };
 
 /**
  * @param word
  */
-export const overview = (word) => {
+export const overview = async (word) => {
     const dict = new Dictionary(word);
-    dict.showOverview();
+    return dict.showOverview();
 };
 
-export const randomOverview = () => {
+export const randomOverview = async () => {
     const dict = new Dictionary();
-    dict.showRandomOverview()
+    return dict.showRandomOverview()
 };
 
-export const play = () => {
+export const play = async () => {
     const dict = new Dictionary();
-    dict.playGuessGame();
+    return dict.playGuessGame();
 };
 

@@ -1,4 +1,4 @@
-import CmdService from './services/ConsoleService';
+import {getRequestedAction, printLine} from './helpers/ConsoleHelper';
 import * as actions from './actions';
 
 /**
@@ -7,14 +7,16 @@ import * as actions from './actions';
  */
 const dispatch = ({ arg1, arg2 }) => {
     if (arg2) {
-        actions[arg1](arg2);
+        return actions[arg1](arg2);
     } else if (arg1) {
-        actions[arg1] ? actions[arg1]() : actions.overview(arg1)
+        return actions[arg1] ? actions[arg1]() : actions.overview(arg1)
     } else {
-        actions.randomOverview();
+        return actions.randomOverview();
     }
 };
 
-const action = CmdService.getAction();
+const action = getRequestedAction();
 
-dispatch(action);
+dispatch(action).then(() => {
+    printLine("\nThank You :)");
+});
