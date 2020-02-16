@@ -14,3 +14,9 @@ export const rangeRandomInt = (min, max) => {
 export const randomInt = (max) => {
     return Math.floor(Math.random() * Math.floor(max));
 };
+
+/**
+ * @param key
+ * @returns {string}
+ */
+export const getEnvKeyValue = (key) => process.env[key];

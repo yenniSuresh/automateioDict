@@ -1,5 +1,7 @@
-import {getRequestedAction, printLine} from './helpers/ConsoleHelper';
+import { getRequestedAction, quitConsole } from './helpers/ConsoleHelper';
 import * as actions from './actions';
+
+//console.log(process.env);
 
 /**
  * @param arg1
@@ -15,8 +17,12 @@ const dispatch = ({ arg1, arg2 }) => {
     }
 };
 
-const action = getRequestedAction();
+try {
+    const action = getRequestedAction();
+    dispatch(action)
+        .then(() => quitConsole())
+        .catch((error) => quitConsole(error));
+} catch (error) {
+    quitConsole(error);
+}
 
-dispatch(action).then(() => {
-    printLine("\nThank You :)");
-});

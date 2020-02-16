@@ -4,8 +4,10 @@
 'use strict';
 
 const path = require('path');
+const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const babelConfig = require('./babel.config');
+const dotenv = require('dotenv').config({ path: __dirname + '/.env'});
 
 module.exports = {
     context: __dirname,
@@ -37,6 +39,11 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': dotenv.parsed
+        })
+    ],
     optimization: {
         minimizer: [
             new TerserPlugin({

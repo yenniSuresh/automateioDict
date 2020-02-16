@@ -1,4 +1,5 @@
 import rl from './ReadLineHelper';
+import InvalidInputError from '../exceptions/InvalidInputError';
 
 /**
  * @param points
@@ -49,5 +50,20 @@ export const askInput = (question) => {
  */
 export const getRequestedAction = () => {
     const args = process.argv.slice(2);
+    if (args.length > 2) {
+        throw new InvalidInputError('Number of arguments should be <= 2');
+    }
     return { arg1: args[0], arg2: args[1] };
+};
+
+/**
+ * @param error
+ */
+export const quitConsole = (error = null) => {
+    let message = '';
+    if (error) {
+        message = `${error.message}\nPlease try again.`;
+    }
+    message += '\nThank You :)';
+    printLine(message);
 };

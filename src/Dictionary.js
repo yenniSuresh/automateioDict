@@ -1,6 +1,7 @@
 import FourtyTwoWordService from './services/FourtyTwoWordService';
 import { printTitle, printPoints, printLine, askInput } from './helpers/ConsoleHelper';
 import { randomInt, rangeRandomInt } from './helpers/GenericHelper';
+import InvalidInputError from './exceptions/InvalidInputError';
 
 export default class Dictionary {
     /**
@@ -180,9 +181,17 @@ export default class Dictionary {
      */
     async _showGameOptions() {
         printLine('Give below options:');
-        printPoints(['Try again', 'Hint', 'Quit']);
-        const selectedOption = await askInput('Please enter one option number: ');
-        return parseInt(selectedOption);
+        const points = ['Try again', 'Hint', 'Quit'];
+        printPoints(points);
+        let selectedOption = await askInput('Please enter one option number: ');
+        selectedOption = parseInt(selectedOption);
+        if (isNaN(selectedOption)) {
+            throw new InvalidInputError('Input should be a number');
+        }
+        if (selectedOption < 1 || selectedOption > points.length) {
+            throw new InvalidInputError(`Please select option between 1 to ${points.length}`);
+        }
+        return selectedOption;
     };
 
     /**

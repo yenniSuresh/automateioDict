@@ -1,4 +1,5 @@
 import { createAxiosApi } from '../helpers/AxiosHelper';
+import ApiError from '../exceptions/ApiError';
 
 export default class BaseResource {
     /**
@@ -55,7 +56,8 @@ export default class BaseResource {
      * @returns {*}
      */
     errorResponseInterceptor(error) {
-        return Promise.reject(error);
+        const { response } = error;
+        return Promise.reject(throw new ApiError(response.data.error, response.status));
     }
 
     /**
