@@ -9,7 +9,7 @@ export default class ApiError extends Error {
      */
     message;
 
-    constructor(message, status) {
+    constructor(message, status = null) {
         super();
         this.message = message;
         this.status = status;

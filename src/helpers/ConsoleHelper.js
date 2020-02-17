@@ -1,5 +1,5 @@
 import rl from './ReadLineHelper';
-import InvalidInputError from '../exceptions/InvalidInputError';
+import InvalidInputError from '../errors/InvalidInputError';
 
 /**
  * @param points

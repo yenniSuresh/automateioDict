@@ -1,7 +1,7 @@
 import FourtyTwoWordService from './services/FourtyTwoWordService';
 import { printTitle, printPoints, printLine, askInput } from './helpers/ConsoleHelper';
 import { randomInt, rangeRandomInt } from './helpers/GenericHelper';
-import InvalidInputError from './exceptions/InvalidInputError';
+import InvalidInputError from './errors/InvalidInputError';
 
 export default class Dictionary {
     /**

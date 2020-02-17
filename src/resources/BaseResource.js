@@ -1,5 +1,5 @@
 import { createAxiosApi } from '../helpers/AxiosHelper';
-import ApiError from '../exceptions/ApiError';
+import ApiError from '../errors/ApiError';
 
 export default class BaseResource {
     /**
@@ -51,13 +51,15 @@ export default class BaseResource {
     }
 
     /**
-     * Override and do something with response error
      * @param error
-     * @returns {*}
+     * @returns {Promise<void>}
      */
-    errorResponseInterceptor(error) {
+    async errorResponseInterceptor(error) {
         const { response } = error;
-        return Promise.reject(throw new ApiError(response.data.error, response.status));
+        if (response) {
+            throw new ApiError(response.data.error, response.status);
+        }
+        throw new ApiError('Please check your network connectivity.');
     }
 
     /**
