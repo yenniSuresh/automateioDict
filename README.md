@@ -9,7 +9,7 @@ Command Line Dictionary Tool
 ### Steps to start app
 > Please make sure you are project root directory:
 1. Run `yarn install`
-2. Run `yarn build`
+2. Run `yarn build`  (please use `sudo` here in case you get permission denied error)
 3. And then following actions to test app
     1. `automateioDict$ ./dict defn <word>`
     2. `automateioDict$ ./dict syn <word>`
