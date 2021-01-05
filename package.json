@@ -11,7 +11,7 @@
     "watch": "node node_modules/.bin/webpack --config webpack.config.js -w --progress --profile"
   },
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
